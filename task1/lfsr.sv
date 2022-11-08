@@ -1,5 +1,5 @@
 module lfsr #(
-    parameter WIDTH = 4
+    parameter WIDTH = 7
 )(
     input  logic             clk,
     input  logic             rst,
@@ -13,7 +13,7 @@ always_ff @(posedge clk, posedge rst)
     if (rst)       
         sreg <= {WIDTH{1'b1}};
     else if (en)
-        sreg <= {sreg[WIDTH-1:1],(sreg[WIDTH]^sreg[WIDTH-1])};
+        sreg <= {sreg[WIDTH-1:1],(sreg[WIDTH]^sreg[WIDTH-4])};
 
 assign dout = sreg;
 
